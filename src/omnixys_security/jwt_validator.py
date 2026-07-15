@@ -75,8 +75,7 @@ class JwtValidator:
             resp = await client.get(self._jwks_url, timeout=10)
             resp.raise_for_status()
             data = cast("dict[str, object]", resp.json())
-            keys = cast("list[dict[str, object]]", data.get("keys", []))
-            return keys
+            return cast("list[dict[str, object]]", data.get("keys", []))
 
     async def _get_jwks(self) -> list[dict[str, object]]:
         if time.time() >= self._cache.expires_at:
