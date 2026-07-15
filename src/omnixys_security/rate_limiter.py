@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-# ruff: noqa: D
 import time
 from typing import TYPE_CHECKING, Any
 
