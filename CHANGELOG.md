@@ -3,6 +3,8 @@
 All notable changes in this project will be documented in this file.
 
 
+## [1.0.5](https://github.com/omnixys/security-python/compare/v1.0.4...v1.0.5) (2026-07-15)
+
 ## [1.0.4](https://github.com/omnixys/security-python/compare/v1.0.3...v1.0.4) (2026-07-15)
 
 ## [1.0.3](https://github.com/omnixys/security-python/compare/v1.0.2...v1.0.3) (2026-07-15)
