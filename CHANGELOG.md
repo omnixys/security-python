@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/omnixys/security-python/compare/v2.0.3...v2.0.4) (2026-07-22)
+
+
+### Bug Fixes
+
+* **publish:** add uv build before uv publish ([947f521](https://github.com/omnixys/security-python/commit/947f521a2841a16bf975286441ecfb48d9909218))
+
 ## [2.0.3](https://github.com/omnixys/security-python/compare/v2.0.2...v2.0.3) (2026-07-22)
 
 
