@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/omnixys/security-python/compare/v2.0.2...v2.0.3) (2026-07-22)
+
+
+### Bug Fixes
+
+* **publish:** replace gh release upload with uv publish to PyPI ([73908fb](https://github.com/omnixys/security-python/commit/73908fb89835b967167c038183ea604dd8794ad9))
+
 ## [2.0.2](https://github.com/omnixys/security-python/compare/v2.0.1...v2.0.2) (2026-07-22)
 
 
