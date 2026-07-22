@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/omnixys/security-python/compare/v2.0.1...v2.0.2) (2026-07-22)
+
+
+### Bug Fixes
+
+* **release:** add @semantic-release/exec to update __version__ in __init__.py ([5f36f9e](https://github.com/omnixys/security-python/commit/5f36f9e299abac24c38e948670aa7300b0e18910))
+
 ## [2.0.1](https://github.com/omnixys/security-python/compare/v2.0.0...v2.0.1) (2026-07-22)
 
 
