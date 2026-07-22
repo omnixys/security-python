@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/omnixys/security-python/compare/v2.0.0...v2.0.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* **cicd:** use version comparison for release detection ([ac2cba5](https://github.com/omnixys/security-python/commit/ac2cba5835e5206f916f64a942b42100c2cb4f76))
+
 # [2.0.0](https://github.com/omnixys/security-python/compare/v1.1.1...v2.0.0) (2026-07-22)
 
 # Changelog
