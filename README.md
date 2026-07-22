@@ -18,7 +18,7 @@ pip install omnixys-security
 ## Usage
 
 ```python
-from omnixys_security import JwtValidator, SecurityMiddleware, RateLimiter, RateLimitMiddleware
+from security import JwtValidator, SecurityMiddleware, RateLimiter, RateLimitMiddleware
 ```
 
 ## License

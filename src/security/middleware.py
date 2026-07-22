@@ -2,12 +2,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
-from omnixys_security.request_context import RequestContext, reset_request_context, set_request_context
+from security.request_context import RequestContext, reset_request_context, set_request_context
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
 
-    from omnixys_security.jwt_validator import JwtClaims, JwtValidator
+    from security.jwt_validator import JwtClaims, JwtValidator
 
 
 class SecurityMiddleware:

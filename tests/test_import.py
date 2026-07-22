@@ -7,13 +7,13 @@ from importlib.metadata import version as pkg_version
 
 
 def test_package_importable() -> None:
-    mod = importlib.import_module("omnixys_security")
+    mod = importlib.import_module("security")
     assert hasattr(mod, "__version__")
     assert mod.__version__ == pkg_version("omnixys-security")
 
 
 def test_public_api() -> None:
-    from omnixys_security import jwt_validator, middleware, request_context
+    from security import jwt_validator, middleware, request_context
 
     assert jwt_validator is not None
     assert middleware is not None

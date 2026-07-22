@@ -3,7 +3,7 @@ from __future__ import annotations
 import time
 from typing import TYPE_CHECKING, Any
 
-from omnixys_security.request_context import current_request_context
+from security.request_context import current_request_context
 
 if TYPE_CHECKING:
     from collections.abc import Awaitable, Callable
