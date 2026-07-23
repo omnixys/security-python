@@ -3,7 +3,7 @@ from security.middleware import SecurityMiddleware
 from security.rate_limiter import RateLimiter, RateLimitMiddleware
 from security.request_context import RequestContext, current_request_context
 
-__version__ = "2.0.3"
+__version__ = "3.0.0"
 
 __all__ = [
     "JwtClaims",
