@@ -13,7 +13,7 @@ class RequestContext:
     last_name: str | None = None
     roles: list[str] = field(default_factory=list)
     scopes: list[str] = field(default_factory=list)
-    organization_id: str | None = None
+    tenant_ids: list[str] = field(default_factory=list)
     tenant_id: str | None = None
     correlation_id: str | None = None
     request_id: str | None = None

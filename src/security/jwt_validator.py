@@ -23,8 +23,7 @@ class JwtClaims(BaseModel):
     family_name: str | None = None
     realm_access: dict[str, list[str]] | None = None
     resource_access: dict[str, dict[str, list[str]]] | None = None
-    organization_id: str | None = None
-    tenant_id: str | None = None
+    tenant_ids: list[str] | None = None
     scope: str | None = None
     azp: str | None = None
     jti: str | None = None

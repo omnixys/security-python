@@ -51,6 +51,7 @@ class SecurityMiddleware:
             return
 
         await self._resolve_jwt(headers, ctx)
+        self._resolve_tenant(headers, ctx)
         self._resolve_headers(headers, ctx)
         self._resolve_client_ip(headers, scope, ctx)
 
@@ -84,11 +85,16 @@ class SecurityMiddleware:
             ctx.last_name = claims.family_name
             ctx.roles = claims.roles
             ctx.scopes = claims.scopes
-            ctx.organization_id = claims.organization_id
-            ctx.tenant_id = claims.tenant_id
+            ctx.tenant_ids = claims.tenant_ids or []
             ctx.is_authenticated = True
         except ValueError:
             pass
+
+    @staticmethod
+    def _resolve_tenant(headers: dict[bytes, bytes], ctx: RequestContext) -> None:
+        header_tenant = headers.get(b"x-tenant-id", b"").decode().strip()
+        if header_tenant and header_tenant in ctx.tenant_ids:
+            ctx.tenant_id = header_tenant
 
     @staticmethod
     def _resolve_headers(headers: dict[bytes, bytes], ctx: RequestContext) -> None:

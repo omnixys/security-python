@@ -77,7 +77,9 @@ class RateLimitMiddleware:
             await self._send_429(send)
             return
 
-        if ctx.organization_id and not await self._limiter.is_allowed(await self._limiter.org_key(ctx.organization_id)):
+        if ctx.tenant_ids and not await self._limiter.is_allowed(
+            await self._limiter.org_key(ctx.tenant_ids[0]),
+        ):
             await self._send_429(send)
             return
 
