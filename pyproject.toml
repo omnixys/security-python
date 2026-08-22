@@ -15,6 +15,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
+    "argon2-cffi>=23.1.0",
     "python-jose[cryptography]>=3.5.0",
     "httpx>=0.28.0",
 ]
@@ -52,6 +53,8 @@ select = ["ALL"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = [
+    "ANN001", "ARG001", "ARG002", "PLR2004", "PLC0415", "PT011", "SLF001",
+    "PT017", "RSE102", "RUF059", "TRY003", "EM101", "SIM105", "TC003",
     "ANN101", "ANN401", "S101",
     "T20", "FBT", "D", "INP001",
 ]
@@ -63,5 +66,6 @@ select = ["ALL"]
 strict = true
 
 [tool.pytest.ini_options]
+asyncio_mode = "auto"
 testpaths = ["tests"]
 pythonpath = ["src"]
