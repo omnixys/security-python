@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/omnixys/security-python/compare/v4.0.0...v4.0.1) (2026-08-22)
+
+
+### Bug Fixes
+
+* **dir:** remove target dir ([a51f348](https://github.com/omnixys/security-python/commit/a51f348f905306faf75e9655ebec6cbaf72877e4))
+
 # [4.0.0](https://github.com/omnixys/security-python/compare/v3.0.0...v4.0.0) (2026-08-03)
 
 # [3.0.0](https://github.com/omnixys/security-python/compare/v2.0.4...v3.0.0) (2026-07-23)
