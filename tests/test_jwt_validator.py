@@ -61,13 +61,14 @@ def _rsa_keys() -> tuple[dict, dict]:
 def test_jwt_claims_parses_roles_scopes_and_expiry() -> None:
     now = int(time.time())
     claims = JwtClaims(
-        sub="user-1",
+        sub="keycloak-sub-1",
+        omnixys_user_id="user-U-1",
         exp=now + 60,
         realm_access={"roles": ["admin"]},
         scope="read write",
         tenant_ids=["t1"],
     )
-    assert claims.user_id == "user-1"
+    assert claims.user_id == "user-U-1"
     assert claims.roles == ["admin"]
     assert claims.scopes == ["read", "write"]
     assert claims.is_expired is False
@@ -86,14 +87,19 @@ def test_jwt_claims_no_exp_or_roles() -> None:
 async def test_validate_accepts_valid_token() -> None:
     private_jwk, public_jwk = _rsa_keys()
     token = jose_jwt.encode(
-        {"sub": "user-1", "iss": "https://example.test", "exp": int(time.time()) + 60},
+        {
+            "sub": "keycloak-sub-1",
+            "omnixys_user_id": "user-U-1",
+            "iss": "https://example.test",
+            "exp": int(time.time()) + 60,
+        },
         private_jwk,
         algorithm="RS256",
         headers={"kid": "test-kid"},
     )
     validator = await _make_validator(public_jwk)
     claims = await validator.validate(token)
-    assert claims.user_id == "user-1"
+    assert claims.user_id == "user-U-1"
 
 
 async def test_validate_rejects_token_from_wrong_key() -> None:

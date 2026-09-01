@@ -7,6 +7,9 @@ from dataclasses import dataclass, field
 @dataclass
 class RequestContext:
     user_id: str | None = None
+    """Internal Omnixys user id (U) for USER principals; None for SERVICE/internal."""
+    principal_type: str | None = None
+    """'USER' | 'SERVICE'; None when unauthenticated or unknown."""
     username: str | None = None
     email: str | None = None
     first_name: str | None = None

@@ -78,7 +78,16 @@ class SecurityMiddleware:
         token = auth_header[7:]
         try:
             claims: JwtClaims = await self._jwt_validator.validate(token)
-            ctx.user_id = claims.user_id
+            if claims.user_id:
+                ctx.user_id = claims.user_id
+                ctx.principal_type = "USER"
+            elif claims.is_service:
+                # Service/machine principal (not a user): no internal user id.
+                ctx.principal_type = "SERVICE"
+            else:
+                # Fail-closed: token is neither a user (no omnixys_user_id claim)
+                # nor an explicit service token.
+                return
             ctx.username = claims.preferred_username
             ctx.email = claims.email
             ctx.first_name = claims.given_name
