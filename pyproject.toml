@@ -1,6 +1,6 @@
 [project]
 name = "omnixys-security"
-dynamic = ["version"]
+version = "4.0.1"
 description = "Omnixys shared security package (JWT, auth middleware, rate limiting)"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
@@ -28,8 +28,6 @@ Repository = "https://github.com/omnixys/omnixys"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.version]
-path = "src/security/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/security"]

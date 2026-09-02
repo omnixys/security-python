@@ -16,7 +16,6 @@ from security.middleware import SecurityMiddleware
 from security.rate_limiter import RateLimiter, RateLimitMiddleware
 from security.request_context import RequestContext, current_request_context, reset_request_context, set_request_context
 
-__version__ = "4.0.1"
 
 __all__ = [
     "AccessDeniedError",
