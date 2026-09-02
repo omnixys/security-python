@@ -382,6 +382,7 @@ wheels = [
 
 [[package]]
 name = "omnixys-security"
+version = "4.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "argon2-cffi" },
