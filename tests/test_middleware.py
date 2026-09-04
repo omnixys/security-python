@@ -102,7 +102,8 @@ def test_invalid_jwt_leaves_unauthenticated() -> None:
 
 def test_valid_jwt_populates_context() -> None:
     claims = JwtClaims(
-        sub="u1",
+        sub="keycloak-sub-1",
+        omnixys_user_id="0195a2f0-0000-7000-8000-000000000001",
         preferred_username="ada",
         email="ada@example.com",
         roles=["admin"],
@@ -112,12 +113,30 @@ def test_valid_jwt_populates_context() -> None:
     middleware = SecurityMiddleware(app=_capturing_app, jwt_validator=_FakeJwtValidator(claims))
     ctx = _run(middleware, "/events", [(b"authorization", b"Bearer valid-token"), (b"x-tenant-id", b"t2")])
     assert ctx.is_authenticated is True
-    assert ctx.user_id == "u1"
+    assert ctx.principal_type == "USER"
+    assert ctx.user_id == "0195a2f0-0000-7000-8000-000000000001"
     assert ctx.username == "ada"
     assert ctx.email == "ada@example.com"
     assert ctx.roles == ["admin"]
     assert ctx.tenant_id == "t2"
     assert ctx.client_ip == "10.0.0.5"
+
+
+def test_user_token_without_internal_id_fails_closed() -> None:
+    claims = JwtClaims(sub="keycloak-sub-1")
+    middleware = SecurityMiddleware(app=_capturing_app, jwt_validator=_FakeJwtValidator(claims))
+    ctx = _run(middleware, "/events", [(b"authorization", b"Bearer valid-token")])
+    assert ctx.is_authenticated is False
+    assert ctx.user_id is None
+
+
+def test_service_token_is_authenticated_without_internal_user_id() -> None:
+    claims = JwtClaims(sub="keycloak-service-sub", azp="mcp-client", client_id="mcp-client")
+    middleware = SecurityMiddleware(app=_capturing_app, jwt_validator=_FakeJwtValidator(claims))
+    ctx = _run(middleware, "/events", [(b"authorization", b"Bearer valid-token")])
+    assert ctx.is_authenticated is True
+    assert ctx.principal_type == "SERVICE"
+    assert ctx.user_id is None
 
 
 def test_tenant_header_outside_tenant_ids_is_ignored() -> None:
@@ -128,7 +147,10 @@ def test_tenant_header_outside_tenant_ids_is_ignored() -> None:
 
 
 def test_request_and_correlation_ids_propagate() -> None:
-    claims = JwtClaims(sub="u1")
+    claims = JwtClaims(
+        sub="keycloak-sub-1",
+        omnixys_user_id="0195a2f0-0000-7000-8000-000000000001",
+    )
     middleware = SecurityMiddleware(app=_capturing_app, jwt_validator=_FakeJwtValidator(claims))
     ctx = _run(
         middleware,
@@ -140,8 +162,11 @@ def test_request_and_correlation_ids_propagate() -> None:
 
 
 def test_context_reset_after_request() -> None:
-    claims = JwtClaims(sub="u1")
+    claims = JwtClaims(
+        sub="keycloak-sub-1",
+        omnixys_user_id="0195a2f0-0000-7000-8000-000000000001",
+    )
     middleware = SecurityMiddleware(app=_capturing_app, jwt_validator=_FakeJwtValidator(claims))
     ctx = _run(middleware, "/events", [(b"authorization", b"Bearer valid-token")])
-    assert ctx.user_id == "u1"
+    assert ctx.user_id == "0195a2f0-0000-7000-8000-000000000001"
     assert current_request_context().user_id is None

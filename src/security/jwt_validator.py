@@ -27,10 +27,23 @@ class JwtClaims(BaseModel):
     scope: str | None = None
     azp: str | None = None
     jti: str | None = None
+    omnixys_user_id: str | None = None
+    omnixys_service_id: str | None = None
 
     @property
     def user_id(self) -> str | None:
-        return self.sub
+        """Internal Omnixys user id (U, UUIDv7) — present only on USER tokens.
+
+        Never the Keycloak subject (K). A service/machine token has user_id = None.
+        """
+        return self.omnixys_user_id
+
+    @property
+    def is_service(self) -> bool:
+        """A SERVICE principal has no internal user id (it is not a user)."""
+        if self.user_id:
+            return False
+        return self.azp is not None or self.omnixys_service_id is not None
 
     @property
     def roles(self) -> list[str]:
