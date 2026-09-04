@@ -1,3 +1,35 @@
+# 🧾 Changelog
+
+All notable changes in this project will be documented in this file.
+
+
+## [4.1.0](https://github.com/omnixys/security-python/compare/v4.0.1...v4.1.0) (2026-09-04)
+
+### Ci
+
+* **Ci:** add setup-uv to release job for uv lock in prepare cmd ([](https://github.com/omnixys/security-python/commit/d8edc807b18c73d734a353428b7ed1fd3ede8c38))
+* **Ci:** bundle semantic-release tool install to fix conventional-changelog-writer ([](https://github.com/omnixys/security-python/commit/ed48a88d3c72b03fe58c85ff410899ec825d4f67))
+* **Ci:** pin conventional-changelog-conventionalcommits to v9 for release-notes-generator compat ([](https://github.com/omnixys/security-python/commit/4d761fed0df6165de218e13e430a17af2eb8bbce))
+* **Ci:** publish tagged release to PyPI ([](https://github.com/omnixys/security-python/commit/12b56477cce42e6d8de1b7950948b1dfb655cc08))
+* **Ci:** remove stray comma from releaseBodyTemplate ([](https://github.com/omnixys/security-python/commit/40ff4352f720e2405ee409666f963ce8f2a5e8fe))
+
+### Deps
+
+* **Deps:** update omnixys deps ([](https://github.com/omnixys/security-python/commit/4e43a070336d732f80c5fcfc3b3f552821781c73))
+
+### Identity
+
+* **Identity:** resolve internal user id from omnixys_user_id claim ([](https://github.com/omnixys/security-python/commit/e6302083397256d1274fc44e3431e3a7ddb9dac0))
+
+### Other
+
+* **Other:** Merge pull request #1 from omnixys/migration/uuid-v7 ([](https://github.com/omnixys/security-python/commit/a91a55c6ef014b6bd7a262e752889a526df3aab2)), closes [#1](https://github.com/omnixys/security-python/issues/1)
+
+### Packaging
+
+* **Packaging:** fix ruff lint and version metadata tests ([](https://github.com/omnixys/security-python/commit/672a91febf0407518788e96819e9b59db52cbaff))
+* **Packaging:** move package version to pyproject.toml and align release workflow ([](https://github.com/omnixys/security-python/commit/e7f8b35f1b8ceb119201c7efe0e265a92ec1884b))
+
 ## [4.0.1](https://github.com/omnixys/security-python/compare/v4.0.0...v4.0.1) (2026-08-22)
 
 
